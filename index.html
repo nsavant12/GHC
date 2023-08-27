@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guesthouse Connection Center</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+            <h1>Guesthouse Connection Center</h1>
+            <img src="https://guesthousechicago.org/wp-content/uploads/2022/04/Guest-House-logo_3840px-1-320x64.png"
+         alt="IMD Guesthouse" width="300" height="50">
+        </div>
+        <p>Enter your contact and social media information:</p>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="twitter" placeholder="Twitter Handle">
+        <input type="text" id="instagram" placeholder="Instagram Username">
+        <input type="text" id="facebook" placeholder="facebook Username">
+        <button onclick="generateQR()">Generate QR Code</button>
+        
+    <div id="qrPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <img id="qrImage" src="">
+        </div>
+    </div>
+
+    </div>
+    <div class="watermark">
+    <a href="https://github.com/nsavant12" target="_blank">
+        <button>madebyNS</button>
+    </a>
+    </div>
+    <script>
+        
+        function closePopup() {
+            document.getElementById("qrPopup").style.display = "none";
+        }
+        
+        function generateQR() {
+          let contactInfo = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            twitter: document.getElementById("twitter").value,
+            instagram: document.getElementById("instagram").value,
+            facebook: document.getElementById("facebook").value,
+          };
+
+          let dataString = JSON.stringify(contactInfo);
+          qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(dataString);
+          document.getElementById("qrPopup").style.display = "block";
+        }
+
+    </script>
+</body>
+</html>
